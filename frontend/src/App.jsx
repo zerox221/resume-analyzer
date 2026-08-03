@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/authentication/login/Login";
 import Signup from "./components/authentication/signup/Signup";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard from "./components/Dashboard/dash";
 
 import Loader from "./utils/Loader";
 import ProtectedRoute from "./components/Dashboard/Protected";

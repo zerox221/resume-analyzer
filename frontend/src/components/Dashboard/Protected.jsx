@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Dashboard from "./dashboard"
-
+import Dashboard from "./dash";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ user, children }) => {
