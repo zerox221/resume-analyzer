@@ -103,7 +103,7 @@ const LoginForm = () => {
         {error && <div className="text-sm text-red-600">{error}</div>}
         <div className="mt-5">
           <button className={`${loading ?"bg-[#363636] disabled: ": "bg-[#000000]"} w-full p-2 font-smibold text-[#ffffff]`}>
-            SIGN IN
+            LOGIN
           </button>
         </div>
         <div>
