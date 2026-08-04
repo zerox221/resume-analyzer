@@ -8,7 +8,9 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const SignupForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { loading, setLoading, setUser  } = useContext(userContext);
+  const { setUser  } = useContext(userContext);
+  const [loading,setloading] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -19,7 +21,7 @@ const SignupForm = () => {
   } = useForm();
 
   async function submitHandler(data) {
-  
+    setloading(true);
     try {
       const response = await axios.post(
         `${BASE_URL}/api/v1/auth/register`,
@@ -35,10 +37,13 @@ const SignupForm = () => {
         navigate("/");
         setUser(response.data.user);
       }
-      setLoading(false);
+
     } catch (error) {
       console.log(error.response?.data || error.message);
       setErrorMessage(error.response?.data.message);
+    }
+    finally{
+      setloading(false);
     }
 
     reset();
@@ -125,7 +130,7 @@ const SignupForm = () => {
           <div className="text-sm text-red-600">{errorMessage}</div>
         )}
         <div className="mt-5">
-          <button className="bg-[#000000] w-full p-2 font-smibold text-[#ffffff]">
+          <button className={` ${loading ?"bg-[#363636] disabled: ": "bg-[#000000]"} w-full p-2 font-smibold text-[#ffffff]`}>
             Create account
           </button>
         </div>

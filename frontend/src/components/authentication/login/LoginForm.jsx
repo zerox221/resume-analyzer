@@ -18,11 +18,12 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  const { setUser , setLoading} = useContext(userContext);
+  const { setUser} = useContext(userContext);
+
+  const [loading,setLoading] = useState(false);
 
   async function submitHandler(data) {
-    console.log(data);
-  
+    setLoading(true);
     setError(false);
     try {
       const response = await axios.post(
@@ -39,10 +40,13 @@ const LoginForm = () => {
         
       }
       reset();
-      setLoading(false);
+   
     } catch (error) {
       console.log(error?.response);
       setError(error.response?.data.message);
+    }
+    finally{
+      setLoading(false);
     }
   }
   return (
@@ -98,7 +102,7 @@ const LoginForm = () => {
         </div>
         {error && <div className="text-sm text-red-600">{error}</div>}
         <div className="mt-5">
-          <button className="bg-[#000000] w-full p-2 font-smibold text-[#ffffff]">
+          <button className={`${loading ?"bg-[#363636] disabled: ": "bg-[#000000]"} w-full p-2 font-smibold text-[#ffffff]`}>
             SIGN IN
           </button>
         </div>
