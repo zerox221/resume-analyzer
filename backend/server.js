@@ -24,10 +24,11 @@ const app = experss();
 require('dotenv').config();
 app.use(experss.json());
 app.use(cookieParser());
+
 app.use(expressFileUpload({
-  useTempFiles:true,
-  tempFileDir : "/temp/",
-}))
+  useTempFiles: true,
+  tempFileDir: "/tmp/",
+}));
 
 app.use(cors({
   origin: [
