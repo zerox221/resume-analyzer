@@ -54,7 +54,6 @@ exports.registerController = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
     });
     res.status(200).json({
       success: true,
@@ -106,7 +105,6 @@ exports.loginController = async (req, res) => {
         maxAge: 10 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
-        sameSite: "strict",
       });
       res.status(200).json({
         success: true,

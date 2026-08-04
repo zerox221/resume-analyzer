@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const userContext = createContext();
 
 export function UserContextProvider({ children }) {
@@ -20,7 +20,7 @@ export function UserContextProvider({ children }) {
   const getUser = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/v1/user/get-me",
+        `${BASE_URL}/api/v1/user/get-me`,
         {
           withCredentials: true,
         }
