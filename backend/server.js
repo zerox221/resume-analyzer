@@ -30,7 +30,10 @@ app.use(expressFileUpload({
 }))
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+    "http://localhost:5173",
+    "https://resume-analyzer-brxrrlkdj-balam-chauhan.vercel.app",
+  ],
   credentials: true,
 }));
 
