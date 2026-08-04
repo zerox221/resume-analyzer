@@ -6,10 +6,16 @@ const userRouter = require('./routes/user.routes');
 const expressFileUpload = require('express-fileupload');
 
 
+const dns = require("dns");
+
+// Force Google DNS
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 
 
 const cors = require("cors");
 const genrateInterviewReport = require('./services/ai.service');
+
 
 
 
