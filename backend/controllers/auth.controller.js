@@ -1,7 +1,7 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Blacklist = require('../models/TokenBlacklist.model');
+const Blacklist = require("../models/TokenBlacklist.model");
 
 require("dotenv").config();
 
@@ -34,12 +34,11 @@ exports.registerController = async (req, res) => {
       });
     }
 
-
     const saveUser = await User.create({
       name,
       email,
       password: hashedPassword,
-      profile : `https://api.dicebear.com/9.x/adventurer/svg?seed=${name}`
+      profile: `https://api.dicebear.com/9.x/adventurer/svg?seed=${name}`,
     });
 
     const payload = {
@@ -54,6 +53,7 @@ exports.registerController = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
+      sameSite: "none",
     });
     res.status(200).json({
       success: true,
@@ -87,8 +87,8 @@ exports.loginController = async (req, res) => {
       });
     }
     console.log(findUser.password);
-  
-    const comparePassword = await bcrypt.compare(password,findUser.password);
+
+    const comparePassword = await bcrypt.compare(password, findUser.password);
 
     console.log(comparePassword);
 
@@ -105,6 +105,7 @@ exports.loginController = async (req, res) => {
         maxAge: 10 * 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
+        sameSite: "none",
       });
       res.status(200).json({
         success: true,
